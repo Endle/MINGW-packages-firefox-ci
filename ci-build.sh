@@ -1,9 +1,5 @@
 #!/bin/bash
 
-# AppVeyor and Drone Continuous Integration for MSYS2
-# Author: Renato Silva <br.renatosilva@gmail.com>
-# Author: Qian Hong <fracting@gmail.com>
-
 # Configure
 cd "$(dirname "$0")"
 source 'ci-library.sh'
@@ -18,5 +14,4 @@ execute 'Upgrading the system' pacman --noconfirm --noprogressbar --sync --refre
 package="mingw-w64-firefox"
 execute 'Building binary' makepkg-mingw --noconfirm --noprogressbar --skippgpcheck --nocheck --syncdeps --rmdeps --cleanbuild
 execute 'Building source' makepkg --noconfirm --noprogressbar --skippgpcheck --allsource --config '/etc/makepkg_mingw64.conf'
-execute 'Installing' yes:pacman --noprogressbar --upgrade *.pkg.tar.xz
 

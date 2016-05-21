@@ -1,11 +1,3 @@
-environment:
-    MSYSTEM: MSYS
-    DEPLOY_PROVIDER: bintray
-    BINTRAY_ACCOUNT: alexpux
-    BINTRAY_REPOSITORY: msys2
-    PACMAN_REPOSITORY_NAME: ci.mingw
-    BUILD_URL: https://ci.appveyor.com/project/$(APPVEYOR_ACCOUNT_NAME)/$(APPVEYOR_PROJECT_NAME)/build/$(APPVEYOR_BUILD_VERSION)
-
 build_script:
     # TODO: remove the line below once the AppVeyor installation includes a
     # newer version of pacman that can perform core updates
@@ -19,15 +11,3 @@ build_script:
 
 artifacts:
     - path: artifacts\*
-
-deploy:
-    - provider: BinTray
-      username: $(BINTRAY_ACCOUNT)
-      subject: $(BINTRAY_ACCOUNT)
-      repo: $(BINTRAY_REPOSITORY)
-      package: $(PACMAN_REPOSITORY_NAME)
-      version: latest
-      publish: true
-      override: true
-      api_key:
-          secure: BINTRAY_TOKEN_ENCRYPTED_BY_APPVEYOR
